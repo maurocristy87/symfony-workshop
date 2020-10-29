@@ -16,13 +16,13 @@ services:
     App\:
         resource: '../src/App'
         exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Kernel.php'
+            - '../src/App/DependencyInjection/'
+            - '../src/App/Kernel.php'
             
     Domain\:
         resource: '../src/Domain'
         exclude:
-            - '../src/Entity/'
+            - '../src/Domain/Entity/'
             
     Infrastructure\:
         resource: '../src/Infrastructure'
