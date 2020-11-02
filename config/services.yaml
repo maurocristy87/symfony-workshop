@@ -35,3 +35,11 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    ## Domain
+    Domain\Repository\CategoryRepositoryInterface: '@Domain\Repository\CategoryRepository'
+    Domain\Repository\ProductRepositoryInterface: '@Domain\Repository\ProductRepository'
+    
+    Domain\Service\CreateProductServiceInterface: '@Domain\Service\CreateProductService'
+    Domain\Service\CreateCategoryServiceInterface: '@Domain\Service\CreateCategoryService'
+    
