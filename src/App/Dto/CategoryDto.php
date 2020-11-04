@@ -8,25 +8,31 @@ use Domain\Dto\Category\CategoryDtoInterface;
 
 class CategoryDto implements CategoryDtoInterface
 {
+    private string $name;
+    
+    private ?string $parentUuid;
     
     public function getName(): string
     {
-        
+        return $this->name;
     }
 
-    public function getParent(): ?\Domain\Entity\Category
+    public function getParentUuid(): ?string
     {
-        
+        return $this->parentUuid;
     }
 
-    public function setName(string $name): void
+    public function setName(string $name): self
     {
+        $this->name = $name;
         
+        return $this;
     }
 
-    public function setParent(\Domain\Entity\Category $category)
+    public function setParentUuid(?string $parentUuid): self
     {
+        $this->parentUuid = $parentUuid;
         
+        return $this;
     }
-
 }

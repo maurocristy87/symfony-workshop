@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Domain\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
@@ -23,11 +24,13 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"create", "show"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"create", "show"})
      */
     private $uuid;
 
@@ -42,12 +45,14 @@ class Category
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="children")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="children", cascade={"persist"}))
+     * @Groups({"create"})
      */
     private $parent;
 
     /**
      * @ORM\OneToMany(targetEntity=Category::class, mappedBy="parent")
+     * @Groups({"show"})
      */
     private $children;
 

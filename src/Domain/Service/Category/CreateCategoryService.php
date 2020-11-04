@@ -24,9 +24,14 @@ class CreateCategoryService implements CreateCategoryServiceInterface
 
     public function create(CategoryDtoInterface $dto): Category
     {
+        $parent = $dto->getParentUuid() !== null
+            ? $this->categoryRepository->findOneBy(['uuid' => $dto->getParentUuid()])
+            : null
+        ;
+        
         $category = (new Category())
             ->setName($dto->getName())
-            ->setParent($dto->getParent())
+            ->setParent($parent)
         ;
         
         $this->categoryRepository->persist($category);

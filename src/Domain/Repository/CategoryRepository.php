@@ -8,7 +8,11 @@ use Doctrine\Persistence\ManagerRegistry;
 
 
 interface CategoryRepositoryInterface {
-    function persist(Category $category, boolean $flush = true);
+    function find($id, $lockMode = null, $lockVersion = null);
+    function findOneBy(array $criteria, array $orderBy = null);
+    function findAll();
+    function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null);
+    function persist(Category $category, bool $flush = true);
 }
 
 /**

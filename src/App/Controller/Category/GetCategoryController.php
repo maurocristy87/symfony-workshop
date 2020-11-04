@@ -7,26 +7,28 @@ namespace App\Controller\Category;
 use App\Controller\ApiControllerTrait;
 use App\Dto\CategoryDto;
 use App\Service\SerializationService;
-use Domain\Service\Category\CreateCategoryServiceInterface;
+use Domain\Repository\CategoryRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class PostCategoryController extends AbstractController
+class GetCategoryController extends AbstractController
 {
     use ApiControllerTrait;
     
     /**
-     * @Route("/categories", methods="POST")
+     * @Route("/categories/{uuid}", methods="GET")
      */
     public function index(
+        string $uuid,
         SerializationService $serializationService,
-        CreateCategoryServiceInterface $createCategoryService
+        CategoryRepositoryInterface $categoryRepository
     ): JsonResponse {
-        $dto = $serializationService->deserializeRequestBody(CategoryDto::class);
+        $category = $categoryRepository->findOneBy(['uuid' => $uuid]);
+        if ($category === null) {
+            return $this->getNotFoundResponse(sprintf('Category with uuid %s not found', $uuid));
+        }
         
-        $category = $createCategoryService->create($dto);
-        
-        return $this->getCreatedResponse($category, ['create']);
+        return $this->getOkResponse($category, ['show']);
     }
 }

@@ -40,6 +40,6 @@ services:
     Domain\Repository\CategoryRepositoryInterface: '@Domain\Repository\CategoryRepository'
     Domain\Repository\ProductRepositoryInterface: '@Domain\Repository\ProductRepository'
     
-    Domain\Service\CreateProductServiceInterface: '@Domain\Service\CreateProductService'
-    Domain\Service\CreateCategoryServiceInterface: '@Domain\Service\CreateCategoryService'
+    Domain\Service\Product\CreateProductServiceInterface: '@Domain\Service\Product\CreateProductService'
+    Domain\Service\Category\CreateCategoryServiceInterface: '@Domain\Service\Category\CreateCategoryService'
     

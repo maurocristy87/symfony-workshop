@@ -6,9 +6,9 @@ use Domain\Entity\Category;
 
 interface CategoryDtoInterface
 {
-    function setName(string $name): void;
+    function setName(string $name): self;
     function getName(): string;
     
-    function getParent(): ?Category;
-    function setParent(Category $category);
+    function getParentUuid(): ?string;
+    function setParentUuid(?string $parentUuid): self;
 }
