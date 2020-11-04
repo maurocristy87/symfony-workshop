@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Controller\Category;
 
 use App\Controller\ApiControllerTrait;
-use App\Dto\CategoryDto;
-use App\Service\SerializationService;
 use Domain\Repository\CategoryRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,7 +19,6 @@ class GetCategoryController extends AbstractController
      */
     public function index(
         string $uuid,
-        SerializationService $serializationService,
         CategoryRepositoryInterface $categoryRepository
     ): JsonResponse {
         $category = $categoryRepository->findOneBy(['uuid' => $uuid]);

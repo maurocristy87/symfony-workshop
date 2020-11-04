@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller\Category;
 
 use App\Controller\ApiControllerTrait;
-use App\Service\SerializationService;
 use Domain\Repository\CategoryRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,10 +17,8 @@ class GetCategoriesController extends AbstractController
     /**
      * @Route("/categories", methods="GET")
      */
-    public function index(
-        SerializationService $serializationService,
-        CategoryRepositoryInterface $categoryRepository
-    ): JsonResponse {
+    public function index(CategoryRepositoryInterface $categoryRepository): JsonResponse
+    {
         return $this->getOkResponse($categoryRepository->findBy(['parent' => null]), ['show']);
     }
 }
