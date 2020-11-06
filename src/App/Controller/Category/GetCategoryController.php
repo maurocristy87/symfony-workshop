@@ -22,6 +22,7 @@ class GetCategoryController extends AbstractController
         CategoryRepositoryInterface $categoryRepository
     ): JsonResponse {
         $category = $categoryRepository->findOneBy(['uuid' => $uuid]);
+        
         if ($category === null) {
             return $this->getNotFoundResponse(sprintf('Category with uuid %s not found', $uuid));
         }

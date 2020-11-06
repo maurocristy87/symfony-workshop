@@ -18,6 +18,6 @@ interface ProductDtoInterface
     function getImage(): ?string;
     function setImage(?string $image);
     
-    function getCategory(): Category;
-    function setCategory(Category $category);
+    function getCategoryUuid(): string;
+    function setCategoryUuid(string $categoryUuid);
 }

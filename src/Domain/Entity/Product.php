@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Domain\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
@@ -23,26 +24,31 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"create", "show"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"create", "show"})
      */
     private $uuid;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @Groups({"create", "show"})
      */
     private $price;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
+     * @Groups({"create", "show"})
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"create", "show"})
      */
     private $image;
 
@@ -63,6 +69,7 @@ class Product
 
     /**
      * @ORM\OneToMany(targetEntity=ProductAttribute::class, mappedBy="product", orphanRemoval=true)
+     * @Groups({"create", "show"})
      */
     private $productAttributes;
 
@@ -144,7 +151,7 @@ class Product
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -156,7 +163,7 @@ class Product
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 

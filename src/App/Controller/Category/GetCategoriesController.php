@@ -19,6 +19,12 @@ class GetCategoriesController extends AbstractController
      */
     public function index(CategoryRepositoryInterface $categoryRepository): JsonResponse
     {
-        return $this->getOkResponse($categoryRepository->findBy(['parent' => null]), ['show']);
-    }
+        $categories = $categoryRepository->findBy(['parent' => null]);
+        
+        if (count($categories) === 0) {
+            return $this->getNoContentResponse();
+        }
+        
+        return $this->getOkResponse($categories, ['show']);
+    }   
 }

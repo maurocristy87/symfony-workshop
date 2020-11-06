@@ -31,6 +31,14 @@ trait ApiControllerTrait
     }
     
     /**
+     * @return JsonResponse
+     */
+    protected function getNoContentResponse(): JsonResponse
+    {
+        return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
+    }
+    
+    /**
      * @param array|object $data
      * @param array        $groups
      *
