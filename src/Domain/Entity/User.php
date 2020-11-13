@@ -6,12 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Domain\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\HasLifecycleCallbacks()
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -121,9 +122,9 @@ class User
         return $this;
     }
 
-    public function getRoles(): ?string
+    public function getRoles(): array
     {
-        return $this->roles;
+        return explode(',', $this->roles);
     }
 
     public function setRoles(string $roles): self
@@ -185,5 +186,15 @@ class User
         }
 
         return $this;
+    }
+
+    public function eraseCredentials()
+    {
+        
+    }
+
+    public function getSalt()
+    {
+        
     }
 }

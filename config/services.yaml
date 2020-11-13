@@ -40,8 +40,17 @@ services:
     App\EventListener\ExceptionListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
+            
+    App\Service\JWT\TokenService:
+        arguments:
+            $secret: '%env(resolve:APP_SECRET)%'
+            
+    App\Service\Security\AuthenticationService:
+        arguments:
+            $tokenLifetime: '%env(resolve:TOKEN_LIFETIME)%'
 
     ## Domain
+    Domain\Repository\UserRepositoryInterface: '@Domain\Repository\UserRepository'
     Domain\Repository\CategoryRepositoryInterface: '@Domain\Repository\CategoryRepository'
     Domain\Repository\ProductRepositoryInterface: '@Domain\Repository\ProductRepository'
     
