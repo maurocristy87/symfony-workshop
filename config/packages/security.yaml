@@ -6,15 +6,16 @@ security:
                 class: Doomain\Entity\User
                 
     encoders:
-        App\Entity\User: 'sha512'
+        Domain\Entity\User: 'sha512'
         
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
-            lazy: true
+            anonymous: ~
+            logout: ~
+            stateless: true
             guard:
                 authenticators:
                     - App\Security\TokenAuthenticator

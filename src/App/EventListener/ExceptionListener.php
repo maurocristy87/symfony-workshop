@@ -9,6 +9,7 @@ use App\Exception\ServiceValidationException as AppServiceValidationException;
 use Domain\Exception\ServiceValidationException as DomainServiceValidationException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class ExceptionListener
 {
@@ -23,6 +24,9 @@ class ExceptionListener
         if ($exception instanceof AppServiceValidationException || $exception instanceof DomainServiceValidationException) {
             $responseData = ['message' => $exception->getMessage()];
             $httpCode = JsonResponse::HTTP_BAD_REQUEST;
+        } elseif ($exception instanceof AccessDeniedHttpException) {
+            $responseData = ['message' => 'Access denied'];
+            $httpCode = $exception->getStatusCode();
         } elseif ($exception instanceof ValidationException) {
             $responseData = [
                 'message' => $exception->getMessage(),

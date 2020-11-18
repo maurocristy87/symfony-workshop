@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service\Security;
 
 use App\Dto\AuthenticationDto;
+use App\Dto\RefreshTokenDto;
 use App\Exception\ServiceValidationException;
 use App\Model\TokenModel;
 use App\Service\JWT\TokenService;
@@ -34,12 +35,12 @@ class AuthenticationService
         $this->tokenLifetime = $tokenLifetime;
     }
 
-    public function createToken(AuthenticationDto $dto): TokenResponse
+    public function createToken(AuthenticationDto $dto): TokenModel
     {
         $user = $this->userRepository->findOneBy(['username' => $dto->getUsername()]);
         
         if ($user === null) {
-            throw new ServiceValidationException('Invalid username or password');
+            throw new ServiceValidationException('Invalid username');
         }
         
         if ($this->passwordEncoder->isPasswordValid($user, $dto->getPassword()) === false) {
@@ -49,9 +50,9 @@ class AuthenticationService
         return $this->generateToken($user);
     }
     
-    public function refreshToken(string $refreshToken): TokenResponse
+    public function refreshToken(RefreshTokenDto $dto): TokenModel
     {
-        $payload = $this->tokenService->decodeToken($refreshToken);
+        $payload = $this->tokenService->decodeToken($dto->getRefreshToken());
         
         $user = $this->userRepository->find($payload['user']);
         if ($user === null) {
@@ -61,7 +62,7 @@ class AuthenticationService
         return $this->generateToken($user);
     }
     
-    private function generateToken(UserInterface $user): TokenResponse
+    private function generateToken(UserInterface $user): TokenModel
     {
         $expires = time() + $this->tokenLifetime;
         $payload = ['user' => $user->getId()];
@@ -74,11 +75,12 @@ class AuthenticationService
         );
     }
     
-    public function authenticate(string $token): User
+    public function authenticate(string $token): UserInterface
     {
         $payload = $this->tokenService->decodeToken($token);
         
         $user = $this->userRepository->find($payload['user']);
+        
         if ($user === null) {
             throw new ServiceValidationException('Invalid token');
         }

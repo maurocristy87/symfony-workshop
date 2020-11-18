@@ -6,7 +6,7 @@ namespace App\Dto;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class AuthenticationDto
+class UserDto
 {
     /**
      * @Assert\Email
@@ -15,7 +15,14 @@ class AuthenticationDto
     private string $username;
     
     /**
+     * @Assert\Email
      * @Assert\NotBlank
+     */
+    private string $email;
+    
+    /**
+     * @Assert\NotBlank
+     * @Asset\Length(min=3, max=255)
      */
     private string $password;
     
@@ -39,6 +46,18 @@ class AuthenticationDto
     public function setPassword(string $password): self
     {
         $this->password = $password;
+        
+        return $this;
+    }
+    
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
         
         return $this;
     }

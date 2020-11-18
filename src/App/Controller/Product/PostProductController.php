@@ -12,6 +12,7 @@ use Domain\Service\Product\CreateProductServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class PostProductController extends AbstractController
 {
@@ -19,6 +20,7 @@ class PostProductController extends AbstractController
     
     /**
      * @Route("/products", methods="POST")
+     * @IsGranted("ROLE_ADMINN")
      */
     public function index(
         SerializationService $serializationService,
