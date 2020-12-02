@@ -20,6 +20,7 @@ interface ProductRepositoryInterface {
     
     function persist(Product $product, bool $flush = true): void;
     function remove(Product $product): void;
+    function flush(): void;
 }
 
 /**
@@ -51,4 +52,10 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
         $this->getEntityManager()->remove($product);
         $this->getEntityManager()->flush();
     }
+
+    public function flush(): void
+    {
+        $this->getEntityManager()->flush();
+    }
+
 }

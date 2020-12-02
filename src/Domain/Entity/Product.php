@@ -39,7 +39,13 @@ class Product
      * @Groups({"create", "show"})
      */
     private $price;
-
+    
+    /**
+     * @ORM\Column(type="decimal", precision=12, scale=10, nullable=true)
+     * @Groups({"create", "show"})
+     */
+    private $bitcoinPrice;
+    
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups({"create", "show"})
@@ -244,6 +250,18 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getBitcoinPrice(): ?float
+    {
+        return $this->bitcoinPrice;
+    }
+
+    public function setBitcoinPrice(?float $bitcoinPrice): self
+    {
+        $this->bitcoinPrice = $bitcoinPrice;
 
         return $this;
     }
