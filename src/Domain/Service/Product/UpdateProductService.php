@@ -8,14 +8,13 @@ use Domain\Dto\Product\ProductDtoInterface;
 use Domain\Entity\Product;
 use Domain\Factory\ProductFactory;
 use Domain\Repository\ProductRepositoryInterface;
-use Domain\Repository\CategoryRepositoryInterface;
 
-interface CreateProductServiceInterface
+interface UpdateProductServiceInterface
 {
-    function create(ProductDtoInterface $dto): Product;
+    function update(Product $product, ProductDtoInterface $dto): Product;
 }
 
-class CreateProductService implements CreateProductServiceInterface
+class UpdateProductService implements UpdateProductServiceInterface
 {
     private ProductRepositoryInterface $productRepository;
     
@@ -29,9 +28,9 @@ class CreateProductService implements CreateProductServiceInterface
         $this->productFactory = $productFactory;
     }
 
-    public function create(ProductDtoInterface $dto): Product
+    public function update(Product $product, ProductDtoInterface $dto): Product
     {
-        $product = $this->productFactory->create($dto);
+        $this->productFactory->update($product, $dto);
         
         $this->productRepository->persist($product);
         

@@ -8,6 +8,7 @@ use App\Controller\ApiControllerTrait;
 use App\Dto\UserDto;
 use App\Service\ValidationService;
 use App\Service\SerializationService;
+use Domain\Service\User\CreateUserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -21,12 +22,15 @@ class PostUserController extends AbstractController
      */
     public function index(
         SerializationService $serializationService,
-        ValidationService $validationService
+        ValidationService $validationService,
+        CreateUserServiceInterface $createUserService
     ): JsonResponse {
         $dto = $serializationService->deserializeRequestBody(UserDto::class);
         
         $validationService->validateAndThrowExcetion($dto);
         
-        return $this->getCreatedResponse($dto);
+        $user = $createUserService->create($dto);
+        
+        return $this->getCreatedResponse($user, ['create']);
     }
 }

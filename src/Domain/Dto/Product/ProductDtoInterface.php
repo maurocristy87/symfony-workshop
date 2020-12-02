@@ -20,4 +20,7 @@ interface ProductDtoInterface
     
     function getCategoryUuid(): string;
     function setCategoryUuid(string $categoryUuid);
+    
+    function setProductAttributes(array $productAttributes);
+    function getProductAttributes(): array;
 }

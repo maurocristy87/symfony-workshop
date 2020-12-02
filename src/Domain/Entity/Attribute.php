@@ -4,6 +4,7 @@ namespace Domain\Entity;
 
 use Domain\Repository\AttributeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=AttributeRepository::class)
@@ -19,6 +20,7 @@ class Attribute
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"create", "show"})
      */
     private string $name;
 

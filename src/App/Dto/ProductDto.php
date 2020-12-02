@@ -40,6 +40,11 @@ class ProductDto implements ProductDtoInterface
      */
     private float $price;
     
+    /**
+     * @var ProductAttributeDto[]
+     */
+    private array $productAttributes;
+    
     public function getCategoryUuid(): string
     {
         return $this->categoryUuid;
@@ -90,4 +95,15 @@ class ProductDto implements ProductDtoInterface
         $this->price = $price;
     }
 
+    public function getProductAttributes(): array
+    {
+        return $this->productAttributes;
+    }
+
+    public function setProductAttributes(array $productAttributes): self
+    {
+        $this->productAttributes = $productAttributes;
+        
+        return $this;
+    }
 }

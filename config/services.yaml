@@ -48,12 +48,23 @@ services:
     App\Service\Security\AuthenticationService:
         arguments:
             $tokenLifetime: '%env(resolve:TOKEN_LIFETIME)%'
+            
+    array_denormalizer:
+        class: Symfony\Component\Serializer\Normalizer\ArrayDenormalizer
+        tags: [serializer.normalizer]
 
     ## Domain
+    Domain\Repository\AttributeRepositoryInterface: '@Domain\Repository\AttributeRepository'
     Domain\Repository\UserRepositoryInterface: '@Domain\Repository\UserRepository'
     Domain\Repository\CategoryRepositoryInterface: '@Domain\Repository\CategoryRepository'
     Domain\Repository\ProductRepositoryInterface: '@Domain\Repository\ProductRepository'
     
     Domain\Service\Product\CreateProductServiceInterface: '@Domain\Service\Product\CreateProductService'
+    Domain\Service\Product\UpdateProductServiceInterface: '@Domain\Service\Product\UpdateProductService'
+    Domain\Service\Product\DeleteProductServiceInterface: '@Domain\Service\Product\DeleteProductService'
     Domain\Service\Category\CreateCategoryServiceInterface: '@Domain\Service\Category\CreateCategoryService'
+    Domain\Service\User\CreateUserServiceInterface: '@Domain\Service\User\CreateUserService'
+    
+    ## Infrastructure
+    Domain\Service\User\UserPasswordEncoderInterface: '@Infrastructure\Service\User\UserPasswordEncoder'
     

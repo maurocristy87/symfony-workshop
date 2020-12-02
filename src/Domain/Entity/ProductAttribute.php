@@ -4,6 +4,8 @@ namespace Domain\Entity;
 
 use Domain\Repository\ProductAttributeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
  * @ORM\Entity(repositoryClass=ProductAttributeRepository::class)
@@ -19,6 +21,7 @@ class ProductAttribute
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"create", "show"})
      */
     private $value;
 
@@ -73,5 +76,14 @@ class ProductAttribute
         $this->product = $product;
 
         return $this;
+    }
+    
+    /**
+     * @SerializedName("attribute")
+     * @Groups({"create", "show"})
+     */
+    public function getAttributeName(): string
+    {
+        return $this->attribute->getName();
     }
 }

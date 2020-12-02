@@ -68,7 +68,7 @@ class Product
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=ProductAttribute::class, mappedBy="product", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=ProductAttribute::class, mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
      * @Groups({"create", "show"})
      */
     private $productAttributes;

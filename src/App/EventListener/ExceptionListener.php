@@ -18,7 +18,7 @@ class ExceptionListener
         $exception = $event->getThrowable();
         $response = new JsonResponse();
         
-        $responseData = ['message' => 'Internal server error.'];
+        $responseData = ['message' => $exception->getMessage(), 'file' => $exception->getFile(), 'line' => $exception->getLine(), 'trace' => $exception->getTrace()];
         $httpCode = 500;
         
         if ($exception instanceof AppServiceValidationException || $exception instanceof DomainServiceValidationException) {

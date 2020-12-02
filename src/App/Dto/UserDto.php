@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
+use Domain\Dto\User\UserDtoInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class UserDto
+class UserDto implements UserDtoInterface
 {
     /**
      * @Assert\Email
@@ -22,7 +23,7 @@ class UserDto
     
     /**
      * @Assert\NotBlank
-     * @Asset\Length(min=3, max=255)
+     * @Assert\Length(min=3, max=255)
      */
     private string $password;
     

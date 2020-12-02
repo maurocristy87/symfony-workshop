@@ -27,7 +27,7 @@ class SerializationService
         $content = $this->requestSatck->getCurrentRequest()->getContent();
         
         try {
-            return $this->serialzier->deserialize($content, $type, 'json', ['allow_extra_attributes' => false]);
+            return $this->serialzier->deserialize($content, $type, 'json');
         } catch (\Exception $ex) {
             throw new ServiceValidationException($ex->getMessage());
         }

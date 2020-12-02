@@ -20,7 +20,7 @@ class PostProductController extends AbstractController
     
     /**
      * @Route("/products", methods="POST")
-     * @IsGranted("ROLE_ADMINN")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(
         SerializationService $serializationService,
