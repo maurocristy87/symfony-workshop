@@ -68,10 +68,23 @@ services:
     
     ## Infrastructure
     Domain\Service\User\UserPasswordEncoderInterface: '@Infrastructure\Service\User\UserPasswordEncoder'
-    ## Domain\Service\BitcoinConverter\BitcoinConverterInterface: '@Infrastructure\Service\BitcoinConverter\BitcoinConverter'
+    Domain\Service\BitcoinConverter\BitcoinConverterInterface: '@Infrastructure\Service\BitcoinConverter\BitcoinConverter'
+    
+    Infrastructure\Service\Cache\RedisService:
+        arguments:
+            $host: '%env(resolve:REDIS_HOST)%'
+            $port: '%env(resolve:REDIS_PORT)%'
+            $lifetime: '%env(resolve:CACHE_LIFETIME)%'
+    
+    Infrastructure\Service\Cache\MemcachedService:
+        arguments:
+            $host: '%env(resolve:MEMCACHED_HOST)%'
+            $port: '%env(resolve:MEMCACHED_PORT)%'
+            $lifetime: '%env(resolve:CACHE_LIFETIME)%'
+            
+    Infrastructure\Service\Cache\CacheServiceInterface: '@Infrastructure\Service\Cache\RedisService'
     
     ## Third party
     GuzzleHttp\Client: ~
     GuzzleHttp\ClientInterface: '@GuzzleHttp\Client'
-    
     
