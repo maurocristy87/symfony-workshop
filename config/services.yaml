@@ -57,7 +57,12 @@ services:
     Domain\Repository\AttributeRepositoryInterface: '@Domain\Repository\AttributeRepository'
     Domain\Repository\UserRepositoryInterface: '@Domain\Repository\UserRepository'
     Domain\Repository\CategoryRepositoryInterface: '@Domain\Repository\CategoryRepository'
+    
+    Domain\Repository\ProductRepository:
+        arguments:
+            $cacheLifetime: '%env(resolve:CACHE_LIFETIME)%'
     Domain\Repository\ProductRepositoryInterface: '@Domain\Repository\ProductRepository'
+    
     
     Domain\Service\Product\CreateProductServiceInterface: '@Domain\Service\Product\CreateProductService'
     Domain\Service\Product\UpdateProductServiceInterface: '@Domain\Service\Product\UpdateProductService'

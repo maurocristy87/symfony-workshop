@@ -1,0 +1,413 @@
+{
+	"info": {
+		"_postman_id": "dcf63a94-6d96-46e3-8ba2-dc8f3ccf6648",
+		"name": "Symfony Workshop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "POST Parent Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ropa\",\r\n    \"parentUuid\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://local.workshop.com/categories",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Child Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Zapatos\",\r\n    \"parentUuid\": \"14403a26-707f-4e88-964b-5aa0956ecd52\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://local.workshop.com/categories",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://local.workshop.com/categories/14403a26-707f-4e88-964b-5aa0956ecd52",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"categories",
+								"14403a26-707f-4e88-964b-5aa0956ecd52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Categories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Remeras\",\r\n    \"parentUuid\": \"14403a26-707f-4e88-964b-5aa0956ecd52\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://local.workshop.com/categories",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "POST Product No Attributes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoxLCJleHAiOjE2MDU4ODM0ODF9.NKwTLy52T61o6HjDK4LCwgjGPDqNlxt4LM5e8EGuxsE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Remera lisa 3\",\r\n    \"categoryUuid\": \"0de086db-ba26-4a67-8104-1813e8ee90a4\",\r\n    \"price\": 200.50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://local.workshop.com/products",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Product With Attributes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoxLCJleHAiOjE2Mzc4NDc5MzZ9.NpWslj9ccRWGGT2xgnA_3eYI0Zog_vELVMoeR0HjmCE"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Remera con atributos 4\",\r\n    \"categoryUuid\": \"0de086db-ba26-4a67-8104-1813e8ee90a4\",\r\n    \"price\": 200.50,\r\n    \"productAttributes\": [\r\n        {\"attributeId\": 1, \"value\": \"S\"},\r\n        {\"attributeId\": 1, \"value\": \"M\"},\r\n        {\"attributeId\": 1, \"value\": \"N\"},\r\n        {\"attributeId\": 2, \"value\": \"Blanco\"},\r\n        {\"attributeId\": 2, \"value\": \"Negro\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://local.workshop.com/products",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Product with attributes",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoxLCJleHAiOjE2Mzc4NDc5MzZ9.NpWslj9ccRWGGT2xgnA_3eYI0Zog_vELVMoeR0HjmCE"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Remera con atributos 4\",\r\n    \"categoryUuid\": \"0de086db-ba26-4a67-8104-1813e8ee90a4\",\r\n    \"price\": 200.50,\r\n    \"productAttributes\": [\r\n        {\"attributeId\": 1, \"value\": \"S\"},\r\n        {\"attributeId\": 1, \"value\": \"M\"},\r\n        {\"attributeId\": 1, \"value\": \"N\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://local.workshop.com/products/e0f0afbd-6d7c-48c6-a138-64a46d5b82f1",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"products",
+								"e0f0afbd-6d7c-48c6-a138-64a46d5b82f1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoxLCJleHAiOjE2Mzc4NDc5MzZ9.NpWslj9ccRWGGT2xgnA_3eYI0Zog_vELVMoeR0HjmCE"
+							}
+						],
+						"url": {
+							"raw": "http://local.workshop.com/products/e0f0afbd-6d7c-48c6-a138-64a46d5b82f1",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"products",
+								"e0f0afbd-6d7c-48c6-a138-64a46d5b82f1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://local.workshop.com/products",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoxLCJleHAiOjE2Mzc4NDc5MzZ9.NpWslj9ccRWGGT2xgnA_3eYI0Zog_vELVMoeR0HjmCE"
+							}
+						],
+						"url": {
+							"raw": "http://local.workshop.com/products/e0f0afbd-6d7c-48c6-a138-64a46d5b82f1",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"products",
+								"e0f0afbd-6d7c-48c6-a138-64a46d5b82f1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "POST Authentication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"anibal@w3itsolutions.org\",\r\n    \"password\": \"654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://local.workshop.com/authentication",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoxfQ.HE4F3QqQoonlSR064s0d0Gd3PBSo42WJh5B4smb2gp8\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://local.workshop.com/authentication/refresh",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"authentication",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "POST User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"anibal@w3itsolutions.org\",\r\n    \"email\": \"anibal@w3itsolutions.org\",\r\n    \"password\": \"654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://local.workshop.com/users",
+							"protocol": "http",
+							"host": [
+								"local",
+								"workshop",
+								"com"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
