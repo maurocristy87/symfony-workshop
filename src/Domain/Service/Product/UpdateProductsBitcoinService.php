@@ -6,6 +6,7 @@ namespace Domain\Service\Product;
 
 use Domain\Repository\ProductRepositoryInterface;
 use Domain\Service\BitcoinConverter\BitcoinConverterInterface;
+use Domain\Service\Logger\CustomLoggerInterface;
 
 interface UpdateProductsBitcoinServiceInterface
 {
@@ -18,21 +19,34 @@ class UpdateProductsBitcoinService implements UpdateProductsBitcoinServiceInterf
     
     private BitcoinConverterInterface $bitcoinConverter;
     
-    public function __construct(ProductRepositoryInterface $productRepository, BitcoinConverterInterface $bitcoinConverter)
-    {
+    private CustomLoggerInterface $logger;
+    
+    public function __construct(
+        ProductRepositoryInterface $productRepository,
+        BitcoinConverterInterface $bitcoinConverter,
+        CustomLoggerInterface $logger
+    ) {
         $this->productRepository = $productRepository;
         $this->bitcoinConverter = $bitcoinConverter;
+        $this->logger = $logger;
     }
 
     public function update(): void
     {
-        $products = $this->productRepository->findAll();
+        try {
+            $products = $this->productRepository->findAll();
         
-        /** @var \Domain\Entity\Product $product */
-        foreach ($products as $product) {
-            $product->setBitcoinPrice($this->bitcoinConverter->ars2btc($product->getPrice()));
-        }
+            /** @var \Domain\Entity\Product $product */
+            foreach ($products as $product) {
+                $product->setBitcoinPrice($this->bitcoinConverter->ars2btc($product->getPrice()));
+            }
 
-        $this->productRepository->flush();
+            $this->productRepository->flush();
+            
+            $this->logger->debug('Debug log');
+            $this->logger->info('Bitcoin prices updated');
+        } catch (\Exception $ex) {
+            $this->logger->error('Something wrong happened: ' . $ex->getMessage());
+        }
     }
 }

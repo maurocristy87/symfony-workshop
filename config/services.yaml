@@ -74,6 +74,8 @@ services:
     ## Infrastructure
     Domain\Service\User\UserPasswordEncoderInterface: '@Infrastructure\Service\User\UserPasswordEncoder'
     Domain\Service\BitcoinConverter\BitcoinConverterInterface: '@Infrastructure\Service\BitcoinConverter\BitcoinConverter'
+    Domain\Service\Logger\LoggerInterface: '@Infrastructure\Service\Logger\DefaultLogger'
+    Domain\Service\Logger\CustomLoggerInterface: '@Infrastructure\Service\Logger\CustomLogger'
     
     Infrastructure\Service\Cache\RedisService:
         arguments:
