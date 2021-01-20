@@ -10,7 +10,7 @@ class CategoryDto implements CategoryDtoInterface
 {
     private string $name;
     
-    private ?string $parentUuid;
+    private ?string $parentUuid = null;
     
     public function getName(): string
     {
