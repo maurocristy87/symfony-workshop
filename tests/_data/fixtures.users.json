@@ -1,0 +1,22 @@
+{
+    "user": [
+        { 
+            "id": 1,
+            "username": "admin@workshop.com",
+            "email": "admin@workshop.com",
+            "password": "zKgdNE7BHguhCKv+42U0WnRCbF8DgMJRQCi2aqzk3vMGfP0ZNIIes6SK+aE6cZtlVm4rEKfY4earvqcNGIMuSA==",
+            "roles": "ROLE_ADMIN,ROLE_USER",
+            "created_at": "2018-10-27 15:42:44",
+            "updated_at": "2018-10-27 15:42:44"
+        },
+        { 
+            "id": 2,
+            "username": "user1@workshop.com",
+            "email": "user1@workshop.com",
+            "password": "zKgdNE7BHguhCKv+42U0WnRCbF8DgMJRQCi2aqzk3vMGfP0ZNIIes6SK+aE6cZtlVm4rEKfY4earvqcNGIMuSA==",
+            "roles": "ROLE_USER",
+            "created_at": "2018-10-27 15:42:44",
+            "updated_at": "2018-10-27 15:42:44"
+        }
+    ]
+}

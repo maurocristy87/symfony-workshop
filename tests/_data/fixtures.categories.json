@@ -1,0 +1,20 @@
+{
+    "category": [
+        { 
+            "id": 1,
+            "parent_id": null,
+            "uuid": "9b1ebf5d-b5cb-4064-ad5c-2f91c9cb6bd2",
+            "name": "Ropa",
+            "created_at": "2018-10-27 15:42:44",
+            "updated_at": "2018-10-27 15:42:44"
+        },
+        { 
+            "id": 2,
+            "parent_id": 1,
+            "uuid": "f3128be2-030f-4f70-a851-b486686550a5",
+            "name": "Remeras",
+            "created_at": "2018-10-27 15:42:44",
+            "updated_at": "2018-10-27 15:42:44"
+        }
+    ]
+}
