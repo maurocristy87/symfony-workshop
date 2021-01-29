@@ -11,6 +11,7 @@ use Domain\Service\Category\CreateCategoryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class PostCategoryController extends AbstractController
 {
@@ -18,6 +19,7 @@ class PostCategoryController extends AbstractController
     
     /**
      * @Route("/categories", methods="POST")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(
         SerializationService $serializationService,
